@@ -1,0 +1,12 @@
+node {
+checkout scm
+	stage('Build')
+	{
+		echo "building stage"
+	}
+    stage ('copying a file'){
+			echo "I am now in the test stage. The node number is ${env.NODE_NAME}"
+            echo "I am now in the build stage ${env.BRANCH_NAME} and the build number is ${env.BUILD_NUMBER}"
+			bat 'D:\\scripts\\copy_file.bat'
+            }
+}

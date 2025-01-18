@@ -1,0 +1,21 @@
+node{
+stage('clean up')
+{
+cleanWs()
+echo 'this is the clean up stage'
+}
+stage('disable concurrent build'){
+echo 'The branch name is : "${env.BRANCH_NAME}"'
+properties([disableConcurrentBuilds()])
+}
+stage('update git lab commit status'){
+echo 'In git lab commit status'
+//updateGitlabCommitStatus name: STAGE_NAME, state: 'running'
+}
+stage('code check out'){
+echo 'code check out stage'
+checkout scm
+commitername=bat(script: "git log -1 --pretty=format:'%cn'",returnStdout: true).trim()
+echo "${commitername}"
+}
+}

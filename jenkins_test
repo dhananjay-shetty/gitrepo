@@ -1,19 +1,35 @@
 node {
-try {checkout scm
-	stage('Build')
-	{
-		echo "building stage"
-	}
-    stage ('copying a file'){
-			echo "I am now in the test stage. The node number is ${env.NODE_NAME}"
+    try {
+        checkout scm
+
+        stage('Checking the env') {
+            echo "The branch name is ${env.BRANCH_NAME}"
+        }
+
+        stage('Build') {
+            echo "building stage"
+        }
+
+        stage('Copying a file') {
+            echo "I am now in the test stage. The node number is ${env.NODE_NAME}"
             echo "I am now in the build stage ${env.BRANCH_NAME} and the build number is ${env.BUILD_NUMBER}"
-			bat 'D:\\scripts\\copy_file.bat'
+            bat 'D:\\scripts\\copy_file.bat'
+        }
+    } catch(e) {
+        currentBuild.result = 'FAILED'
+        throw e
+    } finally {
+        stage('Notify') {
+            if (currentBuild.result == "SUCCESS") {
+                mail to: 'dhananjay.shetty@yahoo.com',
+                     subject: "Build SUCCESS: ${env.BUILD_NUMBER} of job ${env.JOB_NAME}",
+                     body: "The build ${env.BUILD_NUMBER} of job ${env.JOB_NAME} was successful."
+            } else {
+                mail to: 'dhananjay.shetty@yahoo.com',
+                     subject: "Build FAILURE: ${env.BUILD_NUMBER} of job ${env.JOB_NAME}",
+                     body: "The build ${env.BUILD_NUMBER} of job ${env.JOB_NAME} failed. Please check the logs for more details."
             }
-	} catch(e) {
-	currentBuild.result = 'FAILED'
-	throw e }
-	finally {
-	stage('Clean')
-	cleanWs()
-	}
+            cleanWs()
+        }
+    }
 }

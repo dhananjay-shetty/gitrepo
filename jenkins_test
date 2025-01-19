@@ -14,6 +14,6 @@ try {checkout scm
 	throw e }
 	finally {
 	stage('Clean')
-	cleanWS()
+	cleanWs()
 	}
 }

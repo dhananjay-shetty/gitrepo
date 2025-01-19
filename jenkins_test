@@ -21,13 +21,15 @@ node {
     } finally {
         stage('Notify') {
             if (currentBuild.result == "SUCCESS") {
-                //mail to: 'dhananjay.shetty@yahoo.com',
+                /*mail to: 'dhananjay.shetty@yahoo.com',
                      subject: "Build SUCCESS: ${env.BUILD_NUMBER} of job ${env.JOB_NAME}",
-                     body: "The build ${env.BUILD_NUMBER} of job ${env.JOB_NAME} was successful."
+                     body: "The build ${env.BUILD_NUMBER} of job ${env.JOB_NAME} was successful."*/
+                     echo "Build SUCCESS: ${env.BUILD_NUMBER} of job ${env.JOB_NAME}"
             } else {
-                //mail to: 'dhananjay.shetty@yahoo.com',
+                /*mail to: 'dhananjay.shetty@yahoo.com',
                      subject: "Build FAILURE: ${env.BUILD_NUMBER} of job ${env.JOB_NAME}",
-                     body: "The build ${env.BUILD_NUMBER} of job ${env.JOB_NAME} failed. Please check the logs for more details."
+                     body: "The build ${env.BUILD_NUMBER} of job ${env.JOB_NAME} failed. Please check the logs for more details."*/
+                     echo "Build SUCCESS: ${env.BUILD_NUMBER} of job ${env.JOB_NAME}"
             }
             cleanWs()
         }

@@ -1,5 +1,5 @@
 node {
-checkout scm
+try {checkout scm
 	stage('Build')
 	{
 		echo "building stage"
@@ -9,12 +9,11 @@ checkout scm
             echo "I am now in the build stage ${env.BRANCH_NAME} and the build number is ${env.BUILD_NUMBER}"
 			bat 'D:\\scripts\\copy_file.bat'
             }
-    post {
-        success{
-            echo "The pipeline is successfull"
-        }
-        failure{
-            echo "The pipeline failed"
-        }
-    }
+	} catch(e) {
+	currentBuild.result = 'FAILED'
+	throw e }
+	finally {
+	stage('Clean')
+	cleanWS()
+	}
 }

@@ -7,7 +7,7 @@ node {
         stage('Checkout') {
             // Checkout code from the repository
             echo "Checking out the code"
-            git 'https://github.com/dhananjay-shetty/gitrepo.git'
+            git branch: 'MyCode', url: 'https://github.com/dhananjay-shetty/gitrepo.git'
         }
 
         stage('Verify workspace') {

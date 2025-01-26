@@ -12,12 +12,12 @@ node {
     if (${ENV} == "cst"){
         echo "${ENV}"
     }
-        stage('Verify workspace') {
+      /*  stage('Verify workspace') {
             def work_space = pwd()
             echo "Work space path is : ${work_space}"
         }
 
-      /*   stage('Build') {
+         stage('Build') {
             // Build the project and generate a WAR file
             withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
                 bat 'mvn clean package'

@@ -9,15 +9,16 @@ node {
        //     echo "Checking out the code"
       //      git branch: 'gitrepo', url: 'https://github.com/dhananjay-shetty/gitrepo.git'
       //  }
-    if ("${choice.ENV}" == "dev"){
-        echo "${choice.ENV} has been selected"
+   if ("${params.ENV}" == "dev") {
+        echo "${params.ENV} has been selected"
    } 
-else if ("${choice.ENV}" == "cst") {
-echo "${choice.ENV} has been selected"
+else if ("${params.ENV}" == "cst") {
+echo "${params.ENV} has been selected"
    }
-else if ("${choice.ENV}" == "test") {
-echo "${choice.ENV} has been selected"
-} {echo "${choice.ENV} has been selected"}
+else if ("${params.ENV}" == "test") {
+echo "${params.ENV} has been selected"
+} 
+else {echo "${params.ENV} has been selected"}
       /*  stage('Verify workspace') {
             def work_space = pwd()
             echo "Work space path is : ${work_space}"

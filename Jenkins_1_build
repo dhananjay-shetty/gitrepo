@@ -1,7 +1,7 @@
 node {
     // Define variables
     def mvnHome = tool name: 'maven', type: 'maven'
-    def warFile = 'D:\\git_repo/your-app.war'
+    def warFile = 'D:\git_repo\your-app.war'
 
     try {
         stage('Checkout') {
@@ -30,7 +30,7 @@ node {
 
         stage('Deploy') {
             // Deploy the WAR file to your server (replace with your deployment steps)
-            bat "scp ${warFile} dhananjay@192.168.0.104:/path/to/deploy"
+            bat "scp ${warFile} dhananjay@192.168.0.104:D:\git_repo\main"
         }
 
     } catch (Exception e) {

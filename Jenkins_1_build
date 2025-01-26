@@ -4,18 +4,20 @@ node {
     def warFile = 'D:\\git_repo\\your-app.war'
 
     try {
-        stage('Checkout') {
+       // stage('Checkout') {
             // Checkout code from the repository
-            echo "Checking out the code"
-            git branch: 'gitrepo', url: 'https://github.com/dhananjay-shetty/gitrepo.git'
-        }
-
-        stage('Verify workspace') {
+       //     echo "Checking out the code"
+      //      git branch: 'gitrepo', url: 'https://github.com/dhananjay-shetty/gitrepo.git'
+      //  }
+    //if (${ENV} == "cst"){
+        echo "${params.choiceParam}"
+   // }
+      /*  stage('Verify workspace') {
             def work_space = pwd()
             echo "Work space path is : ${work_space}"
         }
 
-          stage('Build') {
+         stage('Build') {
             // Build the project and generate a WAR file
             withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
                 bat 'mvn clean package'
@@ -37,7 +39,7 @@ node {
         stage('Deploy') {
             // Deploy the WAR file to your server (replace with your deployment steps)
             bat "scp ${warFile} dhananjay@192.168.0.104:D:\\git_repo\\main"
-        }
+        } */
 
     } catch (Exception e) {
         currentBuild.result = 'FAILURE'
@@ -46,7 +48,7 @@ node {
         stage('Cleanup') {
             // Perform cleanup steps
             echo 'Cleaning up workspace'
-            deleteDir()
+            //deleteDir()
         }
     }
 }

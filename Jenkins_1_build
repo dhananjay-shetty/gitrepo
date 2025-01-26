@@ -1,4 +1,4 @@
-node {
+ node {
     // Define variables
     def mvnHome = tool name: 'maven', type: 'maven'
     def warFile = 'D:\\git_repo\\your-app.war'

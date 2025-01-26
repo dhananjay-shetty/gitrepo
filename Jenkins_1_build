@@ -6,17 +6,23 @@ node {
     try {
         stage('Checkout') {
             // Checkout code from the repository
+            echo "Checking out the code"
             git 'https://github.com/dhananjay-shetty/gitrepo.git'
         }
 
-        stage('Build') {
+        stage('Verify workspace') {
+            def work_space = pwd()
+            echo "Work space path is : ${work_space}"
+        }
+
+       /*   stage('Build') {
             // Build the project and generate a WAR file
             withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
                 bat 'mvn clean package'
             }
         }
 
-      /*  stage('Test') {
+      stage('Test') {
             // Run tests
             withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
                 bat 'mvn test'

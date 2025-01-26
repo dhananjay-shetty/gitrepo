@@ -12,7 +12,7 @@ node {
     if (${choice.ENV} == "dev"){
         echo "${choice.ENV} has been selected"
    } 
-elseif (${choice.ENV} == "cst") {
+else if (${choice.ENV} == "cst") {
 echo "${choice.ENV} has been selected"
    }
 else {echo "${choice.ENV} has been selected"}

@@ -10,7 +10,7 @@ node {
       //      git branch: 'gitrepo', url: 'https://github.com/dhananjay-shetty/gitrepo.git'
       //  }
     //if (${ENV} == "cst"){
-        echo "${params.choiceParam}"
+        echo "${params.ENV}"
    // }
       /*  stage('Verify workspace') {
             def work_space = pwd()
